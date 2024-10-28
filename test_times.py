@@ -1,3 +1,4 @@
+import pytest
 # Import the functions from times.py
 from times import time_range, compute_overlap_time
 
@@ -62,6 +63,12 @@ def test_exactly_touching():
     
     # Assert
     assert result == expected, f"Test failed! Expected: {expected}, but got: {result}"
+    
+
+def test_backwards_time_range():
+    # Use pytest.raises to check for ValueError
+    with pytest.raises(ValueError, match="End time cannot be before start time"):
+        time_range("2010-01-12 12:00:00", "2010-01-12 10:00:00")
 
 
 # Call all the test functions if running this file directly
